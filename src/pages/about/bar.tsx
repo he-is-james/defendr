@@ -9,9 +9,9 @@ export default function Bar() {
         password: 'password',
         firstName: 'james',
         lastName: 'he',
-        friendsHearts: 0,
-        strangersHearts: 0,
-        careersHearts: 0,
+        friendsHearts: 5,
+        strangersHearts: 5,
+        careersHearts: 5,
       }
       const response = await axios.post('/api/user', newUser)
       console.log(response)
