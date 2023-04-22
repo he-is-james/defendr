@@ -8,6 +8,12 @@ export type User = {
     careersHearts: number,
 }
 
+// export type Persona = {
+//     name: string,
+//     type: string,
+//     clue1: string[],
+// }
+
 export type ErrorMessage = {
     message: string
 }

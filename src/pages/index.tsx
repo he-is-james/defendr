@@ -1,11 +1,13 @@
+import Navbar from '@/components/navbar'
 import Link from 'next/link'
 
-export default function Home() {
+export default function Blank() {
   return (
     <div>
-      <div>Home</div>
+      <Navbar />
+      <div>Blank</div>
       <button>
-        <Link href="/about">Test</Link>
+        <Link href="/home">Test</Link>
       </button>
     </div>
   )
