@@ -1,5 +1,7 @@
+import Link from 'next/link'
+// import { db } from '../../../firebase'
+// import { collection, addDoc, getDocs } from 'firebase/firestore'
 import axios from 'axios'
-import { User } from '../../interfaces/index'
 
 export default function Bar() {
   const setTest = async () => {
@@ -21,7 +23,7 @@ export default function Bar() {
   }
   const getTests = async () => {
     try {
-      const response = await axios.get('/api/user?email=example@email.com')
+      const response = await axios.get('/api/user')
       console.log(response)
     } catch (err) {
       console.log(err)
@@ -47,6 +49,12 @@ export default function Bar() {
         >
           Get Test
         </button>
+      </div>
+      <div>
+        <Link href={'/login'}> login </Link>
+      </div>
+      <div>
+        <Link href={'/signup'}> signup </Link>
       </div>
     </div>
   )
