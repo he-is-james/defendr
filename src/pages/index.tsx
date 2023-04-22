@@ -4,6 +4,7 @@ import { auth } from '../../firebase'
 import TextField from '@mui/material/TextField'
 import { Typography, Button } from '@mui/material'
 import Link from 'next/link'
+import axios from 'axios'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -12,9 +13,12 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      console.log(process.env.API_KEY)
-      await auth.signInWithEmailAndPassword(email, password)
-      router.push('/landing')
+      const { user } = await auth.signInWithEmailAndPassword(email, password)
+      if (user) {
+        const response = await axios.get(`/api/user/${user.uid}`)
+        console.log(response.data)
+        router.push('/landing')
+      }
     } catch (error) {
       console.log(error)
     }
