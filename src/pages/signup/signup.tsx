@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import firebase from '../utils/firebase'
+// import { db, auth } from '../../../firebase'
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const auth = getAuth()
 
   const handleSignUp = async () => {
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
     } catch (error) {
       console.log(error)
     }

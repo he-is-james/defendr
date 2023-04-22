@@ -1,17 +1,18 @@
 import { useState } from 'react'
-import { db, auth } from '../../../firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+// import { db } from '../../../firebase'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/router'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
+  const auth = getAuth()
 
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      router.push('/profile')
+      router.push('/landing')
     } catch (error) {
       console.log(error)
     }
