@@ -2,6 +2,7 @@ import Link from 'next/link'
 // import { db } from '../../../firebase'
 // import { collection, addDoc, getDocs } from 'firebase/firestore'
 import axios from 'axios'
+import { User } from '@/interfaces'
 
 export default function Bar() {
   const setTest = async () => {
