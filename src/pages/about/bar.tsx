@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import { db } from '../../../firebase'
 import { collection, addDoc, getDocs } from 'firebase/firestore'
+import LoginPage from '../login/login'
 
 export default function Bar() {
   const setTest = async () => {
@@ -40,6 +42,9 @@ export default function Bar() {
         >
           Get Test
         </button>
+      </div>
+      <div>
+        <Link href={'/login'}> login </Link>
       </div>
     </div>
   )
