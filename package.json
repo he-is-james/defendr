@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@firebase/firestore": "^3.10.1",
     "@reduxjs/toolkit": "^1.9.5",
+    "@mui/base": "^5.0.0-alpha.126",
+    "@mui/material": "^5.12.1",
     "@types/node": "18.15.13",
     "@types/react": "18.0.38",
     "@types/react-dom": "18.0.11",
