@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import { useRouter } from "next/router";
 
 export default function Lesson() {
@@ -10,6 +11,7 @@ export default function Lesson() {
     
     return (
         <div>
+            <Navbar />
             <div>
                 <div>Lesson: {lesson}</div>
                 <div>Lorem ipsum</div>
