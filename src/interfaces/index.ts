@@ -1,11 +1,8 @@
 export type User = {
     email: string,
-    password: string,
     firstName: string,
     lastName: string,
-    friendsHearts: number,
-    strangersHearts: number,
-    careersHearts: number,
+    hearts: number[]
 }
 
 // TODO: replace the question marks once more finalized

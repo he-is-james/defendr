@@ -1,15 +1,28 @@
 import { useState } from 'react'
 // import { db, auth } from '../../../firebase'
-import { auth } from '../../../firebase'
+import { auth, db } from '../../../firebase'
 import { useRouter } from 'next/router'
+import { User } from '@/interfaces'
+
 const SignUpPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
+
   const handleSignUp = async () => {
     try {
-      await auth.createUserWithEmailAndPassword(email, password)
-      router.push('/login')
+      const { user } = await auth.createUserWithEmailAndPassword(email, password)
+      if (user) {
+        const newUser: User = {
+          email,
+          firstName: 'James',
+          lastName: 'He',
+          hearts: [3, 3, 3]
+        }
+        const response = await db.collection('users').doc(user.uid).set(newUser)
+        console.log(response)
+        // router.push('/login')
+      }
     } catch (error) {
       console.log(error)
     }
