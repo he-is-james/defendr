@@ -1,10 +1,11 @@
 import { useState } from 'react'
 // import { db, auth } from '../../../firebase'
-import { auth } from '../../../firebase'
+import { auth, db } from '../../../firebase'
 import { useRouter } from 'next/router'
 import TextField from '@mui/material/TextField'
 import { Typography, Button } from '@mui/material'
 import Link from 'next/link'
+import { User } from '@/interfaces'
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('')
@@ -15,12 +16,24 @@ const SignUpPage = () => {
   const [lastname, setLastname] = useState('')
 
   const router = useRouter()
+
   const handleSignUp = async () => {
     if (confirmPassword !== password) {
       throw new Error('Passwords do not match')
     }
     try {
-      await auth.createUserWithEmailAndPassword(email, password)
+      const { user } = await auth.createUserWithEmailAndPassword(email, password)
+      if (user) {
+        const newUser: User = {
+          email,
+          firstName: 'James',
+          lastName: 'He',
+          hearts: [3, 3, 3],
+        }
+        const response = await db.collection('users').doc(user.uid).set(newUser)
+        console.log(response)
+        // router.push('/login')
+      }
       router.push('/')
     } catch (error) {
       console.log(error)

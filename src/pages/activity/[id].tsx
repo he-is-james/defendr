@@ -1,12 +1,48 @@
 import Navbar from "@/components/navbar";
+import { Persona } from "@/interfaces";
+import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function Activity() {
     const router = useRouter()
     const { id } = router.query
+    const personaId = Array.isArray(id) ? id[0] : id
+
+    const createPersona = async () => {
+        try {
+            const newPersona: Persona = {
+                name: 'James He',
+                category: personaId || '',
+                scammer: true,
+                type: 'message',
+                background: 'James is someone you were close to during your college years, but you never really had a chance to get to know her well. You occasionally run into each other at alumni events, but you both have different lives now and rarely have a chance to catch up.',
+                bond: 4,
+            }
+            const response = await axios.post(`/api/personas/${id}1`, newPersona)
+            console.log(response)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const getPersona = async () => {
+        try {
+            const response = await axios.get(`/api/personas/${id}`)
+            console.log(response.data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <div>
             <Navbar />
+            <div>
+                <button onClick={() => { createPersona() }}>Test create persona</button>
+            </div>
+            <div>
+                <button onClick={() => { getPersona() }}>Test get persona</button>
+            </div>
             <div>
                 <div>Persona Name</div>
                 <div>
