@@ -1,18 +1,15 @@
 import { useState } from 'react'
-// import { db } from '../../../firebase'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+// import { db, auth } from '../../../firebase'
+import { auth } from '../../../firebase'
 import { useRouter } from 'next/router'
-
-const LoginPage = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
-  const auth = getAuth()
-
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password)
-      router.push('/landing')
+      await auth.createUserWithEmailAndPassword(email, password)
+      router.push('/login')
     } catch (error) {
       console.log(error)
     }
@@ -20,7 +17,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Login Page</h1>
+      <h1>Sign Up Page</h1>
       <form>
         <label>
           Email:
@@ -38,12 +35,12 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button type="button" onClick={handleLogin}>
-          Login
+        <button type="button" onClick={handleSignUp}>
+          Sign Up
         </button>
       </form>
     </div>
   )
 }
 
-export default LoginPage
+export default SignUpPage

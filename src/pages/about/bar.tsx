@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { db } from '../../../firebase'
-import { collection, addDoc, getDocs } from 'firebase/firestore'
-import LoginPage from '../login/login'
+// import { db } from '../../../firebase'
+// import { collection, addDoc, getDocs } from 'firebase/firestore'
 import axios from 'axios'
 
 export default function Bar() {
@@ -53,6 +52,9 @@ export default function Bar() {
       </div>
       <div>
         <Link href={'/login'}> login </Link>
+      </div>
+      <div>
+        <Link href={'/signup'}> signup </Link>
       </div>
     </div>
   )
