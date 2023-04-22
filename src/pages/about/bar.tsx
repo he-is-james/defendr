@@ -7,6 +7,17 @@ import axios from 'axios'
 export default function Bar() {
   const setTest = async () => {
     try {
+      const newUser: User = {
+        email: 'example@email.com',
+        password: 'password',
+        firstName: 'james',
+        lastName: 'he',
+        friendsHearts: 0,
+        strangersHearts: 0,
+        careersHearts: 0,
+      }
+      const response = await axios.post('/api/user', newUser)
+      console.log(response)
     } catch (err) {
       console.log(err)
     }
