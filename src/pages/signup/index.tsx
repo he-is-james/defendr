@@ -21,7 +21,7 @@ const SignUpPage = () => {
     }
     try {
       await auth.createUserWithEmailAndPassword(email, password)
-      router.push('/login')
+      router.push('/')
     } catch (error) {
       console.log(error)
     }
@@ -170,7 +170,7 @@ const SignUpPage = () => {
             {' '}
             Already have an account?{' '}
             <Link
-              href="/login"
+              href="/"
               className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
             >
               Sign in
