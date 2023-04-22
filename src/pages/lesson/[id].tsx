@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Lesson() {
@@ -19,6 +20,14 @@ export default function Lesson() {
             <div>
                 <div>Common Types of Scams</div>
                 <div>Lorem ipsum</div>
+            </div>
+            <div>
+                <div>Let's Practice</div>
+                <div>
+                    <button>
+                        <Link href={`/activity/${id}`}>Begin</Link>
+                    </button>
+                </div>
             </div>
         </div>
     )
