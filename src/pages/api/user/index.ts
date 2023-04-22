@@ -27,6 +27,7 @@ export default async function userHandler(
             break
         case 'POST':
             try {
+                console.log('here')
                 const newUser: User = req.body
                 await db.collection('users').add(newUser)
             } catch (err) {
