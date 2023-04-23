@@ -1,0 +1,6 @@
+body {
+    background-image: url('/heartbackground.svg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-color:white;
+  }

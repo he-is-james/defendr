@@ -8,6 +8,8 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
 import { login } from '@/redux/authSlice'
+import logo from '/public/logo.svg'
+import Image from 'next/image'
 
 const LoginPage = () => {
   const router = useRouter()
@@ -37,15 +39,18 @@ const LoginPage = () => {
   }, [])
 
   return (
-    <div className="flex h-screen justify-center items-center bg-gradient-to-br from-red-400 to-red-200 h-screen w-screen">
+    <div className="flex h-screen justify-center items-center bg-gradient-to-br from-red-500 to-red-200 h-screen w-screen">
       <div className="w-3/12">
-        <div className="text-center mb-4">
+        <div className="content-start mb-12">
+          <Image alt="logo image" src={logo} className="mx-auto block mb-3"></Image>
           <Typography
-            variant="h2"
+            variant="h8"
             className="flex justify-center"
-            fontFamily="Berkshire Swash"
+            fontFamily="Open Sans"
+            color="white"
           >
-            Defendr
+            {' '}
+            Stop Letting Scammers Break Your Heart
           </Typography>
         </div>
         <div className="mb-4 rounded-md bg-white pt-1">
@@ -109,7 +114,7 @@ const LoginPage = () => {
           </Button>
         </div>
         <div className="flex justify-center">
-          <Typography>
+          <Typography fontFamily="Open Sans" color="white">
             {' '}
             Don&apos;t have an account?{' '}
             <Link
