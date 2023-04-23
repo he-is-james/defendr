@@ -28,9 +28,13 @@ export default async function personaHandler(
             try {
                 const newPersona: Persona = body
                 // might need to do some changes with the id creation
-                const response = await db.collection('personas').doc(personaId).set(newPersona)
-                console.log(response)
-                res.status(200).json(newPersona)
+                if (newPersona) {
+                    const response = await db.collection('personas').doc(personaId).set(newPersona)
+                    console.log(response)
+                    res.status(200).json(newPersona)
+                    return
+                }
+                res.status(404).json({ message: 'Persona not created'})
             } catch (err) {
                 res.status(404).json({ message: `Add Persona ${id} failed`})
             }
