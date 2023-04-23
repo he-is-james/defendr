@@ -29,9 +29,9 @@ const SignUpPage = () => {
           firstName: firstname,
           lastName: lastname,
           hearts: [3, 3, 3],
+          progress: [0, 0, 0],
         }
-        const response = await db.collection('users').doc(user.uid).set(newUser)
-        console.log(response)
+        await db.collection('users').doc(user.uid).set(newUser)
         router.push('/')
       }
     } catch (error) {
