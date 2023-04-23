@@ -7,8 +7,12 @@ import { useEffect, useState } from 'react'
 import Actionbar from '@/components/actionbar'
 import { Card } from '@mui/material'
 import Chat from './chat'
+import InstructionsPopup from './instruction'
 
 export default function Activity() {
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   // TODO: add the redux functionality here
   const router = useRouter()
   const { id } = router.query
@@ -111,6 +115,8 @@ export default function Activity() {
           setCount={setCount}
         />
       </Card>
+      <button onClick={handleOpen}>Open Modal</button>
+      <InstructionsPopup isOpen={open} onClose={handleClose}></InstructionsPopup>
     </div>
   )
 }
