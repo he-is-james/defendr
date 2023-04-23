@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import PersonaMessage from './personamessage'
 import { useEffect, useState } from 'react'
 import Actionbar from '@/components/actionbar'
+import { Card } from '@mui/material'
+import Chat from './chat'
 
 export default function Activity() {
   // TODO: add the redux functionality here
@@ -40,19 +42,8 @@ export default function Activity() {
           'Hey sexy3',
           'Hey sexy4',
           'Hey sexy5',
-          'Hey sexy6',
         ],
-        userChoices: [
-          'choice1',
-          'choice2',
-          'choice3',
-          'choice4',
-          'choice5',
-          'choice6',
-          'choice7',
-          'choice8',
-          'choice9',
-        ],
+        userChoices: ['choice1', 'choice2', 'choice3', 'choice4', 'choice5'],
         blocked: 0,
         matched: 0,
         misidentified: 0,
@@ -89,7 +80,7 @@ export default function Activity() {
           Test create persona
         </button>
       </div>
-      <div>
+      <Card>
         {persona ? (
           <PersonaMessage
             name={persona.name}
@@ -103,15 +94,17 @@ export default function Activity() {
         ) : (
           <></>
         )}
-      </div>
-      <div>
-        <div>Chat</div>
-        <div>Message</div>
-        <div>Options</div>
-      </div>
-      <div>
+      </Card>
+      <Card>
+        {/* if the chat is messagesimple vs messagedifficult */}
+        <Chat
+          clues={persona?.clues || []}
+          userChoices={persona?.userChoices || []}
+        />
+      </Card>
+      <Card>
         <Actionbar id={url} scammer={persona?.scammer || false} />
-      </div>
+      </Card>
     </div>
   )
 }

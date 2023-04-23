@@ -26,7 +26,7 @@ export default function Actionbar({ id, scammer }: Props) {
     if (userData) {
       // eslint-disable-next-line no-unsafe-optional-chaining
       const updatedHearts = [...userData?.hearts]
-      if ((scammer && action === 'match') || (scammer && action === 'block')) {
+      if ((scammer && action === 'match') || (!scammer && action === 'block')) {
         updatedHearts[index] -= 1
       }
       // eslint-disable-next-line no-unsafe-optional-chaining
