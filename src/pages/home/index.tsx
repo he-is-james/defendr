@@ -11,7 +11,7 @@ import { Typography } from '@mui/material'
 import lessoncard from '/public/lessoncard.svg'
 import friendlogo from '/public/friendlogo.svg'
 import strangerlogo from '/public/strangerlogo.svg'
-import careerlogo from '/public/careerlogo.svg'
+import workplacelogo from '/public/workplacelogo.svg'
 
 export default function Home() {
   const router = useRouter()
@@ -149,9 +149,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="flex justify-center relative w-1/3">
-            <Link href="/lesson/career">
+            <Link href="/lesson/workplace">
               <div className="relative">
-                <Image alt="career image" src={lessoncard} />
+                <Image alt="workplace image" src={lessoncard} />
                 <div
                   className="absolute inset-0 m-auto"
                   onMouseEnter={() => setHoveredC(true)}
@@ -161,8 +161,8 @@ export default function Home() {
                     className={`absolute inset-0 m-auto transform ${
                       hoveredC ? '-translate-y-32' : 'translate-y-0'
                     } transition-all duration-300`}
-                    alt="career logo"
-                    src={careerlogo}
+                    alt="workplace logo"
+                    src={workplacelogo}
                   />
                   <div
                     className={`absolute inset-0 flex flex-col justify-center items-center transform ${
