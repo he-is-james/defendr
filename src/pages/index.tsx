@@ -1,28 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { auth } from '../../firebase'
 import TextField from '@mui/material/TextField'
 import { Typography, Button } from '@mui/material'
 import Link from 'next/link'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
+import { login } from '@/redux/authSlice'
 
 const LoginPage = () => {
+  const router = useRouter()
+  const { userData } = useSelector((state: RootState) => state.auth)
+  const dispatch = useDispatch()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const router = useRouter()
 
   const handleLogin = async () => {
     try {
       const { user } = await auth.signInWithEmailAndPassword(email, password)
       if (user) {
         const response = await axios.get(`/api/user/${user.uid}`)
-        console.log(response.data)
-        router.push('/landing')
+        dispatch(login(response.data))
+        router.push('/home')
       }
     } catch (error) {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    if (userData) {
+      router.push('/home')
+    }
+  }, [])
 
   return (
     <div className="flex h-screen justify-center items-center bg-gradient-to-br from-red-400 to-red-200 h-screen w-screen">

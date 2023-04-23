@@ -1,16 +1,43 @@
 import Navbar from '@/components/navbar'
+import { User } from '@/interfaces'
+import { RootState } from '@/redux/store'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 export default function Home() {
+  const router = useRouter()
+  const userData = useSelector<RootState, User>((state:RootState) => state.auth.userData)
+  
+  useEffect(() => {
+    if (!userData) {
+      router.push('/')
+    }
+  }, [])
+
   return (
     <div>
       <Navbar />
       <div>
         <div>
-          <div>Hello Angela,</div>
+          <div>Hello {userData?.firstName},</div>
           <div>Lorem ipsum dolor sit amet</div>
         </div>
-        <div>PROGRESS</div>
+        <div>
+          {userData?.hearts.map((heart, i) => {
+            return(
+              <div>Lesson {i + 1}: {heart} hearts remaining</div>
+            )
+          })}
+        </div>
+        <div>
+          {userData?.progress.map((progress, i) => {
+            return(
+              <div>Progress {i + 1}: {progress} out of 3 personas finished</div>
+            )
+          })}
+        </div>
       </div>
       <div>
         <div>Begin</div>
