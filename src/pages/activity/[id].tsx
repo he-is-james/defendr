@@ -9,6 +9,7 @@ import { Card } from '@mui/material'
 import Chat from './chat'
 
 export default function Activity() {
+  // TODO: add the redux functionality here
   const router = useRouter()
   const { id } = router.query
   const personaId = Array.isArray(id) ? id[0] : id
@@ -80,7 +81,7 @@ export default function Activity() {
           Test create persona
         </button>
       </div>
-      <Card>
+      <div>
         {persona ? (
           <PersonaMessage
             name={persona.name}
@@ -94,7 +95,7 @@ export default function Activity() {
         ) : (
           <></>
         )}
-      </Card>
+      </div>
       <Card>
         {/* if the chat is messagesimple vs messagedifficult */}
         <Chat

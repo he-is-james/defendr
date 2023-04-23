@@ -1,3 +1,4 @@
+import { Button, Typography, Grid, Paper } from '@mui/material'
 interface Props {
   name: string
   pronouns: string
@@ -19,35 +20,56 @@ export default function PersonaMessage({
 }: Props) {
   return (
     <div>
-      <div>
-        <div>{name}</div>
-        <div>{pronouns}</div>
-        <div>TODO: press here later for instructions, new component</div>
+      <div className="flex flex-row">
+        <Typography variant="h1" fontFamily="Berkshire Swash">
+          {name}
+        </Typography>
+        <Typography variant="h3" fontFamily="Berkshire Swash">
+          {pronouns}
+        </Typography>
+        <Button>instruction</Button>
       </div>
-      <div>
-        <div>How you know them</div>
-        <div>{background}</div>
-      </div>
-      <div>
-        <div>
-          <div>Age: {properties[0]}</div>
-          <div>Height: {properties[1]}</div>
-          <div>Occupation: {properties[2]}</div>
-          <div>Location: {properties[3]}</div>
-        </div>
-        <div>TODO: hardcode image url here</div>
-      </div>
-      <div>
-        <div>Bond: {bond}</div>
-        <div>
-          <div>{prompts[0]}</div>
-          <div>{responses[0]}</div>
-        </div>
-      </div>
-      <div>
-        <div>{prompts[1]}</div>
-        <div>{responses[1]}</div>
-      </div>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        rowSpacing={1}
+        columnSpacing={2}
+      >
+        <Grid item xs={6}>
+          <Paper>
+            <div>How you know them</div>
+            <div>{background}</div>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper>
+            <div>
+              <div>Age: {properties[0]}</div>
+              <div>Height: {properties[1]}</div>
+              <div>Occupation: {properties[2]}</div>
+              <div>Location: {properties[3]}</div>
+            </div>
+            <div>CHANGE CHANGE CHANGE CHANGE to image</div>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <div>
+            <Paper>Bond: {bond}</Paper>
+            <Paper>
+              <div>{prompts[0]}</div>
+              <div>{responses[0]}</div>
+            </Paper>
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper>
+            <div>{prompts[1]}</div>
+            <div>{responses[1]}</div>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   )
 }
