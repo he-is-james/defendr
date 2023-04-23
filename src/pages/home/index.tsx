@@ -76,7 +76,7 @@ export default function Home() {
         </div>
       </div>
       <div className="pr-8 pl-8 pb-8">
-        <div className="pb-5">
+        <div className="pb-8">
           <Typography variant="h3" fontFamily="Berkshire Swash">
             Lessons
           </Typography>
@@ -188,6 +188,8 @@ export default function Home() {
           Global Stats
         </Typography>
         <div>MOST BLOCKED</div>
+        <div>MOST MATCHED</div>
+        <div>MOST DECEIVING</div>
       </div>
     </div>
   )
