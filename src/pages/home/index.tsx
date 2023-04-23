@@ -15,7 +15,7 @@ import careerlogo from '/public/careerlogo.svg'
 
 export default function Home() {
   const router = useRouter()
-  const userData = useSelector<RootState, User>(
+  const userData = useSelector<RootState, User | null>(
     (state: RootState) => state.auth.userData
   )
 
