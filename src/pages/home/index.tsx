@@ -36,7 +36,7 @@ export default function Home() {
               Hello,
             </Typography>
             <Typography
-              className="text-[#C37370]"
+              className="text-[#C37370] pl-10 pb-1"
               variant="h2"
               fontFamily="Berkshire Swash"
             >

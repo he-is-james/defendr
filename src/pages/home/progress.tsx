@@ -1,7 +1,7 @@
 import { score } from '@/components/score'
 import { Typography } from '@mui/material'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+
 interface ProgressComponent {
   size: number
   color: string
@@ -11,8 +11,6 @@ interface ProgressComponent {
 }
 
 const ProgressComponent: React.FC<ProgressComponent> = ({
-  size,
-  color,
   numhearts,
   numLesson,
   numPersonas,
@@ -58,7 +56,7 @@ const ProgressComponent: React.FC<ProgressComponent> = ({
       <div className="row-span-1">
         <Image alt="score" src={selectScore(numhearts, numPersonas)}></Image>
       </div>
-      <div className="row-span-1">
+      <div className="row-span-1 pt-10">
         <Typography
           className="text-center content-center"
           variant="h4"
