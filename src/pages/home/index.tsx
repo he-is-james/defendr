@@ -12,6 +12,9 @@ import lessoncard from '/public/lessoncard.svg'
 import friendlogo from '/public/friendlogo.svg'
 import strangerlogo from '/public/strangerlogo.svg'
 import workplacelogo from '/public/workplacelogo.svg'
+import blocked from '/public/blocked.svg'
+import matched from '/public/matched.svg'
+import deceived from '/public/deceived.svg'
 
 export default function Home() {
   const router = useRouter()
@@ -184,12 +187,22 @@ export default function Home() {
         </div>
       </div>
       <div className="p-8">
-        <Typography variant="h3" fontFamily="Berkshire Swash">
-          Global Stats
-        </Typography>
-        <div>MOST BLOCKED</div>
-        <div>MOST MATCHED</div>
-        <div>MOST DECEIVING</div>
+        <div>
+          <Typography variant="h3" fontFamily="Berkshire Swash">
+            Global Stats
+          </Typography>
+        </div>
+        <div className="flex flex-row justify-center relative p-4">
+          <div className="w-1/3">
+            <Image alt="blocked" src={blocked} />
+          </div>
+          <div className="w-1/3">
+            <Image alt="matched" src={matched} />
+          </div>
+          <div className="w-1/3">
+            <Image alt="deceived" src={deceived} />
+          </div>
+        </div>
       </div>
     </div>
   )
