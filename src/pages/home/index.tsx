@@ -25,8 +25,8 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <div className="flex grow p-8 ">
-        <div className="flex grow grid w-2/5 p-8">
+      <div className="flex p-6 ">
+        <div className="grid w-2/5 p-8">
           <div className="grid space-x-1 grid-cols-2 justify-center w-full">
             <Typography
               className="col-span-1 pb-1"
@@ -36,14 +36,14 @@ export default function Home() {
               Hello,
             </Typography>
             <Typography
-              className="text-[#C37370] col-span-1"
+              className="text-[#C37370]"
               variant="h2"
               fontFamily="Berkshire Swash"
             >
               {userData?.firstName}
             </Typography>
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 row-span-4">
             Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit
             ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor
             sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum
@@ -55,7 +55,7 @@ export default function Home() {
             ipsum dolor sit ametLorem ipsum dolor sit amet
           </div>
         </div>
-        <div className="flex w-3/5">
+        <div className="flex space-x-1">
           {userData?.hearts.map((heart, i) => {
             return (
               <div key={i} className="w-1/3">
@@ -100,7 +100,7 @@ export default function Home() {
               <Link href="/lesson/career"> Lesson 3: Career </Link>
             </button>
             <div>
-              <Image src={friendsSVG}></Image>
+              <Image alt="friends" src={friendsSVG}></Image>
             </div>
           </div>
         </div>
