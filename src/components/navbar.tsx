@@ -10,7 +10,7 @@ export default function Navbar() {
       <div className="w-5/6 pt-3">
         <Image alt="navbar logo" src={navbarlogo} />
       </div>
-      <div className="flex flex-row w-1/6 pt-2 space-x-8">
+      <div className="flex flex-row w-1/5 pt-2 space-x-8">
         <div className="p-1">
           <Link href="/scamcheck">
             <Typography

@@ -11,6 +11,8 @@ import Chat from './chat'
 import Image from 'next/image'
 import james from './../../../public/james.svg'
 import angela from './../../../public/angela.svg'
+import inbox from '../../../public/inbox.svg'
+import email from '../../../public/email.svg'
 
 export default function Activity() {
   const router = useRouter()
@@ -105,6 +107,7 @@ export default function Activity() {
             <Chat
               clues={persona?.clues || []}
               userChoices={persona?.userChoices || []}
+              person={0}
             />
           </div>
         </div>
@@ -127,6 +130,7 @@ export default function Activity() {
             <Chat
               clues={persona?.clues || []}
               userChoices={persona?.userChoices || []}
+              person={1}
             />
           </div>
         </div>
@@ -138,6 +142,44 @@ export default function Activity() {
       </div>
     )
   } else {
-    router.push('/home')
+    return (
+      <div>
+        <Navbar />
+        {/* <div>
+          <button
+            onClick={() => {
+              createPersona()
+            }}
+          >
+            Test create persona
+          </button>
+        </div> */}
+        <div className="flex flex-row h-full">
+          <div className="w-1/3 p-4">
+            {/* {persona ? ( */}
+            <Image alt="inbox" src={inbox} />
+            {/* ) : (
+              <PersonaMessage
+                name={persona.name}
+                pronouns={persona.pronouns}
+                background={persona.background}
+                properties={persona.properties}
+                bond={persona.bond}
+                prompts={persona.prompts}
+                responses={persona.responses}
+              />
+            )} */}
+          </div>
+          <div className="w-2/3 p-4">
+            <Image alt="email" src={email} />
+          </div>
+        </div>
+        <Card>
+          <Actionbar id={url} scammer={true} count={count} setCount={setCount} />
+        </Card>
+        {/* <button onClick={handleOpen}>Open Modal</button> */}
+        {/* <InstructionsPopup isOpen={open} onClose={handleClose}></InstructionsPopup> */}
+      </div>
+    )
   }
 }

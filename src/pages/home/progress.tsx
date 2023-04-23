@@ -48,7 +48,7 @@ const ProgressComponent: React.FC<ProgressComponent> = ({
       case 2:
         return 'Strangers'
       case 3:
-        return 'Career'
+        return 'Workplace'
     }
   }
   return (

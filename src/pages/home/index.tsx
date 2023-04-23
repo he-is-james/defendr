@@ -104,11 +104,11 @@ export default function Home() {
                     } transition-all duration-300`}
                   >
                     <Typography
-                      className="text-white text-center"
+                      className="text-white text-center p-1"
                       fontFamily="Open Sans"
                     >
-                      Getting scammed can be an emotionally devastating experience.
-                      Educate yourself on common scams.
+                      Practice recognizing the warning signs of online scams from
+                      people you know.
                     </Typography>
                   </div>
                 </div>
@@ -137,11 +137,11 @@ export default function Home() {
                     } transition-all duration-300`}
                   >
                     <Typography
-                      className="text-white text-center"
+                      className="text-white text-center p-1"
                       fontFamily="Open Sans"
                     >
-                      TODO: REPLACE Getting scammed can be an emotionally devastating
-                      experience. Educate yourself on common scams.
+                      Learn how to stay vigilant when receiving deceiving emails from
+                      companies and strangers.
                     </Typography>
                   </div>
                 </div>
@@ -170,11 +170,11 @@ export default function Home() {
                     } transition-all duration-300`}
                   >
                     <Typography
-                      className="text-white text-center"
+                      className="text-white text-center p-1"
                       fontFamily="Open Sans"
                     >
-                      TODO: REPLACE Getting scammed can be an emotionally devastating
-                      experience. Educate yourself on common scams.
+                      Recognize and avoid online scams in a professional context from
+                      coworkers and external sources.
                     </Typography>
                   </div>
                 </div>
