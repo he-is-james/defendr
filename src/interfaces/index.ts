@@ -2,8 +2,9 @@ export type User = {
     email: string,
     firstName: string,
     lastName: string,
-    hearts: number[]
-}
+    hearts: number[],
+    progress: number[]
+} | null
 
 // TODO: replace the question marks once more finalized
 export type Persona = {

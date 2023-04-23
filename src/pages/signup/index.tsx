@@ -29,6 +29,7 @@ const SignUpPage = () => {
           firstName: 'James',
           lastName: 'He',
           hearts: [3, 3, 3],
+          progress: [0, 0, 0]
         }
         await db.collection('users').doc(user.uid).set(newUser)
         router.push('/')
