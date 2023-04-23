@@ -26,15 +26,14 @@ const SignUpPage = () => {
       if (user) {
         const newUser: User = {
           email,
-          firstName: 'James',
-          lastName: 'He',
+          firstName: firstname,
+          lastName: lastname,
           hearts: [3, 3, 3],
         }
         const response = await db.collection('users').doc(user.uid).set(newUser)
         console.log(response)
-        // router.push('/login')
+        router.push('/')
       }
-      router.push('/')
     } catch (error) {
       console.log(error)
     }

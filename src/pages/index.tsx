@@ -17,7 +17,7 @@ const LoginPage = () => {
       if (user) {
         const response = await axios.get(`/api/user/${user.uid}`)
         console.log(response.data)
-        router.push('/landing')
+        router.push('/home')
       }
     } catch (error) {
       console.log(error)

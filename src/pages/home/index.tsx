@@ -1,16 +1,28 @@
 import Navbar from '@/components/navbar'
+import ProgressComponent from './progress'
 import Link from 'next/link'
 
 export default function Home() {
   return (
     <div>
       <Navbar />
-      <div>
-        <div>
+      <div className="flex grow">
+        <div className="flex">
           <div>Hello Angela,</div>
           <div>Lorem ipsum dolor sit amet</div>
         </div>
         <div>PROGRESS</div>
+        <div className="flex">
+          <div className="w-1/3">
+            <ProgressComponent size={36} color="red-400" />
+          </div>
+          <div className="w-1/3">
+            <ProgressComponent size={36} color="red-400" />
+          </div>
+          <div className="w-1/3">
+            <ProgressComponent size={36} color="red-400" />
+          </div>
+        </div>
       </div>
       <div>
         <div>Begin</div>
