@@ -1,8 +1,10 @@
 import { User } from '@/interfaces'
 import { updateUserData } from '@/redux/authSlice'
 import { RootState } from '@/redux/store'
+import axios from 'axios'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
+import { auth } from '../../firebase'
 
 interface Props {
   id: string
@@ -23,12 +25,12 @@ export default function Actionbar({ id, scammer }: Props) {
   const handleAction = async (action: string) => {
     if (userData) {
       // eslint-disable-next-line no-unsafe-optional-chaining
-      const updatedHearts = [...userData?.hearts] || [3, 3, 3]
+      const updatedHearts = [...userData?.hearts]
       if ((scammer && action === 'match') || (scammer && action === 'block')) {
         updatedHearts[index] -= 1
       }
       // eslint-disable-next-line no-unsafe-optional-chaining
-      const updatedProgress = [...userData?.progress] || [0, 0, 0]
+      const updatedProgress = [...userData?.progress]
       updatedProgress[index] += 1
       const updatedUserData: User = {
         ...userData,
@@ -36,6 +38,8 @@ export default function Actionbar({ id, scammer }: Props) {
         progress: updatedProgress,
       }
       dispatch(updateUserData(updatedUserData))
+      const userId = await auth.currentUser?.uid
+      await axios.post(`/api/user/${userId}`, updatedUserData)
     }
   }
 
