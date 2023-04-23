@@ -1,33 +1,18 @@
 import Navbar from '@/components/navbar'
-import { Persona, User } from '@/interfaces'
+import { Persona } from '@/interfaces'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import PersonaMessage from './personamessage'
 import { useEffect, useState } from 'react'
 import Actionbar from '@/components/actionbar'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux/store'
 
 export default function Activity() {
   // TODO: add the redux functionality here
-  const userData = useSelector<RootState, User | null>(
-    (state: RootState) => state.auth.userData
-  )
   const router = useRouter()
   const { id } = router.query
   const personaId = Array.isArray(id) ? id[0] : id
 
   const url = personaId || '/home'
-  let heartCount = 3
-  if (userData) {
-    if (url === 'friends') {
-      heartCount = userData.hearts[0]
-    } else if (url === 'strangers') {
-      heartCount = userData.hearts[1]
-    } else if (url === 'career') {
-      heartCount = userData.hearts[2]
-    }
-  }
 
   const [persona, setPersona] = useState<Persona | null>(null)
 
@@ -125,7 +110,7 @@ export default function Activity() {
         <div>Options</div>
       </div>
       <div>
-        <Actionbar id={url} hearts={heartCount} />
+        <Actionbar id={url} scammer={persona?.scammer || false} />
       </div>
     </div>
   )
