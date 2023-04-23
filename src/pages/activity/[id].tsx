@@ -1,16 +1,35 @@
 import Navbar from '@/components/navbar'
-import { Persona } from '@/interfaces'
+import { Persona, User } from '@/interfaces'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import PersonaMessage from './personamessage'
 import { useEffect, useState } from 'react'
+import Actionbar from '@/components/actionbar'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
 
 export default function Activity() {
+  // TODO: add the redux functionality here
+  const userData = useSelector<RootState, User | null>(
+    (state: RootState) => state.auth.userData
+  )
   const router = useRouter()
   const { id } = router.query
   const personaId = Array.isArray(id) ? id[0] : id
 
-  const [persona, setPersona] = useState<Persona>(null)
+  const url = personaId || '/home'
+  let heartCount = 3
+  if (userData) {
+    if (url === 'friends') {
+      heartCount = userData.hearts[0]
+    } else if (url === 'strangers') {
+      heartCount = userData.hearts[1]
+    } else if (url === 'career') {
+      heartCount = userData.hearts[2]
+    }
+  }
+
+  const [persona, setPersona] = useState<Persona | null>(null)
 
   const createPersona = async () => {
     try {
@@ -53,7 +72,7 @@ export default function Activity() {
         matched: 0,
         misidentified: 0,
       }
-      const response = await axios.post(`/api/personas/${personaId}1`, newPersona)
+      const response = await axios.post(`/api/personas/${id}1`, newPersona)
       console.log(response)
     } catch (err) {
       console.log(err)
@@ -106,9 +125,7 @@ export default function Activity() {
         <div>Options</div>
       </div>
       <div>
-        <div>Back</div>
-        <div>Block</div>
-        <div>Match</div>
+        <Actionbar id={url} hearts={heartCount} />
       </div>
     </div>
   )

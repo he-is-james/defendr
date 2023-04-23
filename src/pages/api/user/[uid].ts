@@ -29,7 +29,7 @@ export default async function userHandler(
       try {
         const newUser: User = body
         if (newUser) {
-          await db.collection('users').add(newUser)
+          await db.collection('users').doc(userId).set(newUser)
           res.status(200).json(newUser)
           return
         }

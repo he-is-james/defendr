@@ -4,7 +4,7 @@ export type User = {
   lastName: string
   hearts: number[]
   progress: number[]
-} | null
+}
 
 // TODO: replace the question marks once more finalized
 export type Persona = {
@@ -24,7 +24,7 @@ export type Persona = {
   blocked: number
   matched: number
   misidentified: number
-} | null
+}
 
 export type ErrorMessage = {
   message: string

@@ -8,8 +8,10 @@ import { useSelector } from 'react-redux'
 
 export default function Home() {
   const router = useRouter()
-  const userData = useSelector<RootState, User>((state:RootState) => state.auth.userData)
-  
+  const userData = useSelector<RootState, User | null>(
+    (state: RootState) => state.auth.userData
+  )
+
   useEffect(() => {
     if (!userData) {
       router.push('/')
@@ -26,15 +28,19 @@ export default function Home() {
         </div>
         <div>
           {userData?.hearts.map((heart, i) => {
-            return(
-              <div>Lesson {i + 1}: {heart} hearts remaining</div>
+            return (
+              <div key={i}>
+                Lesson {i + 1}: {heart} hearts remaining
+              </div>
             )
           })}
         </div>
         <div>
           {userData?.progress.map((progress, i) => {
-            return(
-              <div>Progress {i + 1}: {progress} out of 3 personas finished</div>
+            return (
+              <div key={i}>
+                Progress {i + 1}: {progress} out of 3 personas finished
+              </div>
             )
           })}
         </div>
