@@ -5,10 +5,13 @@ import { RootState } from '@/redux/store'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Typography } from '@mui/material'
-import friendsSVG from '/public/friends.svg'
+import lessoncard from '/public/lessoncard.svg'
+import friendlogo from '/public/friendlogo.svg'
+import strangerlogo from '/public/strangerlogo.svg'
+import careerlogo from '/public/careerlogo.svg'
 
 export default function Home() {
   const router = useRouter()
@@ -22,37 +25,38 @@ export default function Home() {
     }
   }, [])
 
+  const [hoveredF, setHoveredF] = useState(false)
+  const [hoveredS, setHoveredS] = useState(false)
+  const [hoveredC, setHoveredC] = useState(false)
+
   return (
     <div>
       <Navbar />
-      <div className="flex p-6 ">
+      <div className="flex flex-row pt-6 pr-6 pl-6 ">
         <div className="grid w-2/5 p-8">
-          <div className="grid space-x-1 grid-cols-2 justify-center w-full">
-            <Typography
-              className="col-span-1 pb-1"
-              variant="h2"
-              fontFamily="Berkshire Swash"
-            >
-              Hello,
-            </Typography>
-            <Typography
-              className="text-[#C37370] pl-10 pb-1"
-              variant="h2"
-              fontFamily="Berkshire Swash"
-            >
-              {userData?.firstName}
-            </Typography>
+          <div className="flex flex-row">
+            <div className="pb-1 pr-2">
+              <Typography variant="h2" fontFamily="Berkshire Swash">
+                Hello,
+              </Typography>
+            </div>
+            <div className="pb-1 pl-2">
+              <Typography
+                className="text-[#C37370]"
+                variant="h2"
+                fontFamily="Berkshire Swash"
+              >
+                {userData?.firstName}
+              </Typography>
+            </div>
           </div>
           <div className="col-span-2 row-span-4">
-            Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit
-            ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor
-            sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum
-            dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem
-            ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit
-            ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor
-            sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum
-            dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem
-            ipsum dolor sit ametLorem ipsum dolor sit amet
+            <Typography className="text-[#2E2E2E]" fontFamily="Open Sans">
+              Getting scammed can be an emotionally devastating experience, much like
+              getting your heart broken. Educate yourself on common scams and be
+              vigilant when it comes to giving out personal information or money.
+              Start your first lesson!
+            </Typography>
           </div>
         </div>
         <div className="flex space-x-1">
@@ -71,37 +75,111 @@ export default function Home() {
           })}
         </div>
       </div>
-      <div className="p-8">
-        <Typography variant="h3" fontFamily="Berkshire Swash">
-          Begin
-        </Typography>
+      <div className="pr-8 pl-8 pb-8">
+        <div className="pb-5">
+          <Typography variant="h3" fontFamily="Berkshire Swash">
+            Lessons
+          </Typography>
+        </div>
         <div className="flex">
-          <div className="w-1/3">
-            <button>
-              <Link href="/lesson/friends">
-                {' '}
-                Lesson 1: Friends
-                <div>
-                  <Image alt="friends image" src={friendsSVG}></Image>
+          <div className="flex justify-center relative w-1/3">
+            <Link href="/lesson/friends">
+              <div className="relative">
+                <Image alt="friends image" src={lessoncard} />
+                <div
+                  className="absolute inset-0 m-auto"
+                  onMouseEnter={() => setHoveredF(true)}
+                  onMouseLeave={() => setHoveredF(false)}
+                >
+                  <Image
+                    className={`absolute inset-0 m-auto transform ${
+                      hoveredF ? '-translate-y-32' : 'translate-y-0'
+                    } transition-all duration-300`}
+                    alt="friends logo"
+                    src={friendlogo}
+                  />
+                  <div
+                    className={`absolute inset-0 flex flex-col justify-center items-center transform ${
+                      hoveredF ? 'opacity-100' : 'opacity-0'
+                    } transition-all duration-300`}
+                  >
+                    <Typography
+                      className="text-white text-center"
+                      fontFamily="Open Sans"
+                    >
+                      Getting scammed can be an emotionally devastating experience.
+                      Educate yourself on common scams.
+                    </Typography>
+                  </div>
                 </div>
-              </Link>
-            </button>
+              </div>
+            </Link>
           </div>
-          <div className="w-1/3">
-            <button>
-              <Link href="/lesson/strangers"> Lesson 2: Strangers </Link>
-            </button>
-            <div>
-              <Image src={friendsSVG}></Image>
-            </div>
+          <div className="flex justify-center relative w-1/3">
+            <Link href="/lesson/strangers">
+              <div className="relative">
+                <Image alt="strangers image" src={lessoncard} />
+                <div
+                  className="absolute inset-0 m-auto"
+                  onMouseEnter={() => setHoveredS(true)}
+                  onMouseLeave={() => setHoveredS(false)}
+                >
+                  <Image
+                    className={`absolute inset-0 m-auto transform ${
+                      hoveredS ? '-translate-y-32' : 'translate-y-0'
+                    } transition-all duration-300`}
+                    alt="strangers logo"
+                    src={strangerlogo}
+                  />
+                  <div
+                    className={`absolute inset-0 flex flex-col justify-center items-center transform ${
+                      hoveredS ? 'opacity-100' : 'opacity-0'
+                    } transition-all duration-300`}
+                  >
+                    <Typography
+                      className="text-white text-center"
+                      fontFamily="Open Sans"
+                    >
+                      TODO: REPLACE Getting scammed can be an emotionally devastating
+                      experience. Educate yourself on common scams.
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
-          <div className="w-1/3">
-            <button>
-              <Link href="/lesson/career"> Lesson 3: Career </Link>
-            </button>
-            <div>
-              <Image alt="friends" src={friendsSVG}></Image>
-            </div>
+          <div className="flex justify-center relative w-1/3">
+            <Link href="/lesson/career">
+              <div className="relative">
+                <Image alt="career image" src={lessoncard} />
+                <div
+                  className="absolute inset-0 m-auto"
+                  onMouseEnter={() => setHoveredC(true)}
+                  onMouseLeave={() => setHoveredC(false)}
+                >
+                  <Image
+                    className={`absolute inset-0 m-auto transform ${
+                      hoveredC ? '-translate-y-32' : 'translate-y-0'
+                    } transition-all duration-300`}
+                    alt="career logo"
+                    src={careerlogo}
+                  />
+                  <div
+                    className={`absolute inset-0 flex flex-col justify-center items-center transform ${
+                      hoveredC ? 'opacity-100' : 'opacity-0'
+                    } transition-all duration-300`}
+                  >
+                    <Typography
+                      className="text-white text-center"
+                      fontFamily="Open Sans"
+                    >
+                      TODO: REPLACE Getting scammed can be an emotionally devastating
+                      experience. Educate yourself on common scams.
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

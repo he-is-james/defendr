@@ -1,36 +1,31 @@
 import Link from 'next/link'
-import { auth } from '../../firebase'
-import { useDispatch } from 'react-redux'
-import { logout } from '@/redux/authSlice'
+import Image from 'next/image'
+import navbarlogo from '../../public/navbarlogo.svg'
+import { Typography } from '@mui/material'
 
 export default function Navbar() {
-  const dispatch = useDispatch()
-
-  const handleSignOut = async () => {
-    const response = await auth.signOut()
-    console.log(response)
-    dispatch(logout())
-  }
   return (
-    <div>
-      <div>Defendr</div>
-      <div>
-        <li>
-          <button>
-            <Link href="/home">Home</Link>
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => {
-              handleSignOut()
-            }}
-          >
-            <Link href="/">Sign Out</Link>
-          </button>
-        </li>
-        <li>About</li>
-        <li>User</li>
+    <div className="bg-white flex flex-row h-12 drop-shadow-md">
+      <div className="w-8"></div>
+      <div className="w-5/6">
+        <Image alt="navbar logo" src={navbarlogo} />
+      </div>
+      <div className="flex flex-row w-1/6 pt-2">
+        <div className="w-1/2">
+          <Link href="/home">
+            <Typography
+              className="font-normal text-[#C47370]"
+              fontFamily="Open Sans"
+            >
+              Home
+            </Typography>
+          </Link>
+        </div>
+        <div className="w-1/2">
+          <Typography className="font-normal text-[#C47370]" fontFamily="Open Sans">
+            Profile
+          </Typography>
+        </div>
       </div>
     </div>
   )
