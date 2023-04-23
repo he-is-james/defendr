@@ -5,13 +5,17 @@ import axios from 'axios'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth } from '../../firebase'
+import { useRouter } from 'next/router'
 
 interface Props {
   id: string
   scammer: boolean
+  count: number
+  setCount: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function Actionbar({ id, scammer }: Props) {
+export default function Actionbar({ id, scammer, count, setCount }: Props) {
+  const router = useRouter()
   const userData = useSelector((state: RootState) => state.auth.userData)
   const dispatch = useDispatch()
 
@@ -26,12 +30,17 @@ export default function Actionbar({ id, scammer }: Props) {
     if (userData) {
       // eslint-disable-next-line no-unsafe-optional-chaining
       const updatedHearts = [...userData?.hearts]
-      if ((scammer && action === 'match') || (!scammer && action === 'block')) {
+      if (
+        (updatedHearts[index] > 0 && scammer && action === 'match') ||
+        (!scammer && action === 'block')
+      ) {
         updatedHearts[index] -= 1
       }
       // eslint-disable-next-line no-unsafe-optional-chaining
       const updatedProgress = [...userData?.progress]
-      updatedProgress[index] += 1
+      if (updatedProgress[index] < 3) {
+        updatedProgress[index] += 1
+      }
       const updatedUserData: User = {
         ...userData,
         hearts: updatedHearts,
@@ -40,6 +49,10 @@ export default function Actionbar({ id, scammer }: Props) {
       dispatch(updateUserData(updatedUserData))
       const userId = await auth.currentUser?.uid
       await axios.post(`/api/user/${userId}`, updatedUserData)
+      setCount((prevCount) => prevCount + 1)
+    }
+    if (count === 3) {
+      router.push('/home')
     }
   }
 

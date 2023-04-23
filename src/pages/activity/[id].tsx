@@ -9,19 +9,19 @@ import { Card } from '@mui/material'
 import Chat from './chat'
 
 export default function Activity() {
-  // TODO: add the redux functionality here
   const router = useRouter()
   const { id } = router.query
   const personaId = Array.isArray(id) ? id[0] : id
 
   const url = personaId || '/home'
 
+  const [count, setCount] = useState(1)
   const [persona, setPersona] = useState<Persona | null>(null)
 
   const createPersona = async () => {
     try {
       const newPersona: Persona = {
-        name: 'James He',
+        name: 'Angela Ling',
         pronouns: 'he/him',
         category: personaId || '',
         scammer: true,
@@ -48,7 +48,7 @@ export default function Activity() {
         matched: 0,
         misidentified: 0,
       }
-      const response = await axios.post(`/api/personas/${id}1`, newPersona)
+      const response = await axios.post(`/api/personas/${id}3`, newPersona)
       console.log(response)
     } catch (err) {
       console.log(err)
@@ -57,7 +57,7 @@ export default function Activity() {
 
   const getPersona = async () => {
     try {
-      const response = await axios.get(`/api/personas/${id}1`)
+      const response = await axios.get(`/api/personas/${id}${count}`)
       setPersona(response.data)
     } catch (err) {
       console.log(err)
@@ -66,7 +66,7 @@ export default function Activity() {
 
   useEffect(() => {
     getPersona()
-  }, [])
+  }, [count])
 
   return (
     <div>
@@ -103,7 +103,12 @@ export default function Activity() {
         />
       </Card>
       <Card>
-        <Actionbar id={url} scammer={persona?.scammer || false} />
+        <Actionbar
+          id={url}
+          scammer={persona?.scammer || false}
+          count={count}
+          setCount={setCount}
+        />
       </Card>
     </div>
   )
