@@ -1,11 +1,12 @@
 import { useState } from 'react'
 // import { db, auth } from '../../../firebase'
-import { auth, db } from '../../../firebase'
+import { auth } from '../../../firebase'
 import { useRouter } from 'next/router'
 import TextField from '@mui/material/TextField'
 import { Typography, Button } from '@mui/material'
 import Link from 'next/link'
 import { User } from '@/interfaces'
+import axios from 'axios'
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('')
@@ -29,9 +30,9 @@ const SignUpPage = () => {
           firstName: 'James',
           lastName: 'He',
           hearts: [3, 3, 3],
-          progress: [0, 0, 0]
+          progress: [0, 0, 0],
         }
-        await db.collection('users').doc(user.uid).set(newUser)
+        await axios.post(`/api/user/${user.uid}`, newUser)
         router.push('/')
       }
     } catch (error) {

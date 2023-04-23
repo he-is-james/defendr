@@ -6,7 +6,7 @@ export default async function userHandler(
   req: NextApiRequest,
   res: NextApiResponse<User | ErrorMessage>
 ) {
-  const { query, method } = req
+  const { query, body, method } = req
   const { uid } = query
   const userId = Array.isArray(uid) ? uid[0] : uid
 
@@ -27,9 +27,14 @@ export default async function userHandler(
       break
     case 'POST':
       try {
-        console.log('here')
-        const newUser: User = req.body
-        await db.collection('users').add(newUser)
+        const newUser: User = body
+        if (newUser) {
+          await db.collection('users').doc(userId).set(newUser)
+          res.status(200).json(newUser)
+          return
+        }
+        res.status(404).json({ message: 'Add User failed' })
+        return
       } catch (err) {
         res.status(404).json({ message: 'Add User failed' })
       }
