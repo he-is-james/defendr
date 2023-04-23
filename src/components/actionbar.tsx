@@ -58,7 +58,9 @@ export default function Actionbar({ id, scammer, count, setCount }: Props) {
       dispatch(updateUserData(updatedUserData))
       const userId = await auth.currentUser?.uid
       await axios.post(`/api/user/${userId}`, updatedUserData)
-      setCount((prevCount) => prevCount + 1)
+      setTimeout(() => {
+        setCount((prevCount) => prevCount + 1)
+      }, 2000)
     }
     if (count === 3) {
       router.push('/home')
